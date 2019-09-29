@@ -1,0 +1,36 @@
+import itertools
+
+secret = [
+  0x7A, 0x17, 0x08, 0x34, 0x17, 0x31, 0x3B, 0x25, 0x5B, 0x18, 0x2E, 0x3A, 0x15, 0x56, 0x0E, 0x11,
+  0x3E, 0x0D, 0x11, 0x3B, 0x24, 0x21, 0x31, 0x06,	0x3C, 0x26, 0x7C, 0x3C, 0x0D, 0x24, 0x16, 0x3A,
+  0x14, 0x79, 0x01, 0x3A,	0x18, 0x5A, 0x58, 0x73, 0x2E, 0x09, 0x00, 0x16, 0x00, 0x49, 0x22, 0x01,
+  0x40, 0x08, 0x0A, 0x14 ]
+
+key = [0 for x in range(13)]
+
+def decrypt():
+  result = ""
+  key_index = 0
+  for index in range(len(secret)):
+    result += chr(key [key_index] ^ secret[index])
+    key_index = (key_index + 1) % len (key)
+
+  return result
+
+key[0] = ord ("@") ^ secret[-13]
+key[1] = ord ("f") ^ secret[-12]
+key[2] = ord ("l") ^ secret[-11]
+key[3] = ord ("a") ^ secret[-10]
+key[4] = ord ("r") ^ secret[-9]
+key[5] = ord ("e") ^ secret[-8]
+key[6] = ord ("-") ^ secret[-7]
+key[7] = ord ("o") ^ secret[-6]
+key[8] = ord ("n") ^ secret[-5]
+key[9] = ord (".") ^ secret[-4]
+key[10] = ord ("c") ^ secret[-3]
+key[11] = ord ("o") ^ secret[-2]
+key[12] = ord ("m") ^ secret[-1]
+
+dbg = decrypt()
+print(dbg)
+
